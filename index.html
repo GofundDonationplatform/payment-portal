@@ -1,84 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Secure Service Payment Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GFSSGA-IMPACT-NETWORK / Secure Service Payment</title>
 
 <style>
-
-body{
-font-family:Arial;
-background:#f4f6f8;
-text-align:center;
-padding-top:80px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.container{
-background:white;
-width:420px;
-margin:auto;
-padding:40px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
-button{
-display:block;
-width:100%;
-margin-top:15px;
-padding:15px;
-font-size:18px;
-border:none;
-border-radius:6px;
-cursor:pointer;
+header img {
+    width: 180px;
+    margin-bottom: 15px;
 }
 
-.card{
-background:#0066ff;
-color:white;
+h1 {
+    color: #0d3b66;
+    margin-bottom: 5px;
 }
 
-.transfer{
-background:#28a745;
-color:white;
+p.description {
+    color: #333333;
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 
+form {
+    text-align: left;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+button.card {
+    background: #0066ff;
+    color: white;
+}
+
+button.card:hover {
+    background: #004bb5;
+}
+
+button.transfer {
+    background: #28a745;
+    color: white;
+}
+
+button.transfer:hover {
+    background: #1e7e34;
+}
+
+/* Responsive */
+@media(max-width: 500px){
+    .container {
+        padding: 30px 20px;
+    }
+}
 </style>
-
 </head>
-
 <body>
 
 <div class="container">
 
+<header>
+    <img src="logo.png" alt="GFSSGA-IMPACT-NETWORK Logo">
+</header>
+
 <h1>GFSSGA-IMPACT-NETWORK</h1>
+<p class="description">Secure Service Payment Portal. Select your preferred method to complete your payment safely.</p>
 
-<h2>Secure Service Payment Portal</h2>
-
-<p>
-GFSSGA-IMPACT-NETWORK provides consulting, coordination, and support
-services for social development initiatives, digital projects,
-and community-based programs.
-</p>
-
-<p>
-Use the secure options below to complete your service payment.
-</p>
-
-<p><b>Business Name:</b> GFSSGA-IMPACT-NETWORK</p>
-<p><b>Service Type:</b> Consulting & Project Support Services</p>
-<p><b>Email:</b> support@gfssga-impact-network.com</p>
-
-<p>Select your preferred payment method</p>
-
-<a href="payoneer.html">
-<button class="card">Pay with Card</button>
-</a>
-
-<a href="transfer.html">
-<button class="transfer">Bank Transfer</button>
-</a>
+<form id="checkoutForm">
+    <input type="text" name="clientName" placeholder="Full Name" required>
+    <input type="email" name="clientEmail" placeholder="Email Address" required>
+    <input type="number" name="amount" placeholder="Amount (USD)" required>
+    <select name="paymentMethod" required>
+        <option value="" disabled selected>Select Payment Method</option>
+        <option value="card">Pay with Card</option>
+        <option value="transfer">Bank Transfer</option>
+    </select>
+    <button type="submit" class="card">Proceed to Payment</button>
+</form>
 
 </div>
+
+<script>
+document.getElementById('checkoutForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const form = e.target;
+    const method = form.paymentMethod.value;
+
+    // Payoneer link placeholder (update after approval)
+    const payoneerLink = "https://payoneer.com/payment-request/XXXXXX";
+    // Grey bank transfer instruction page
+    const greyLink = "transfer.html";
+
+    if(method === "card"){
+        window.open(payoneerLink, "_blank");
+    } else if(method === "transfer"){
+        window.location.href = greyLink;
+    } else {
+        alert("Please select a payment method");
+    }
+});
+</script>
 
 </body>
 </html>
