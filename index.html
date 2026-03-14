@@ -118,27 +118,49 @@ button.transfer:hover {
 </form>
 
 </div>
+<div style="text-align:center;margin-top:20px;">
 
+<p style="font-size:14px;color:#555;">
+Secure payments powered by trusted financial partners.
+</p>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" width="60">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" width="60">
+
+<p style="font-size:12px;color:gray;margin-top:10px;">
+🔒 SSL Secure Payment Portal
+</p>
+
+</div>
 <script>
+
+function generateReference(){
+return "GFSSGA-" + Math.floor(Math.random()*1000000000);
+}
+
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
-    e.preventDefault();
 
-    const form = e.target;
-    const method = form.paymentMethod.value;
+e.preventDefault();
 
-    // Payoneer link placeholder (update after approval)
-    const payoneerLink = "https://payoneer.com/payment-request/XXXXXX";
-    // Grey bank transfer instruction page
-    const greyLink = "transfer.html";
+const reference = generateReference();
 
-    if(method === "card"){
-        window.open(payoneerLink, "_blank");
-    } else if(method === "transfer"){
-        window.location.href = greyLink;
-    } else {
-        alert("Please select a payment method");
-    }
+alert("Your Payment Reference: " + reference + "\nPlease include this reference in your payment.");
+
+const form = e.target;
+const method = form.paymentMethod.value;
+
+const payoneerLink = "https://payoneer.com/payment-request/XXXXXX";
+const greyLink = "transfer.html";
+
+if(method === "card"){
+window.open(payoneerLink,"_blank");
+}
+else if(method === "transfer"){
+window.location.href = greyLink;
+}
+
 });
+
 </script>
 
 </body>
