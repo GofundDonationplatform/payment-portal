@@ -105,16 +105,22 @@ button.transfer:hover {
 <h1>GFSSGA-IMPACT-NETWORK</h1>
 <p class="description">Secure Service Payment Portal. Select your preferred method to complete your payment safely.</p>
 
-<form id="checkoutForm">
-    <input type="text" name="clientName" placeholder="Full Name" required>
-    <input type="email" name="clientEmail" placeholder="Email Address" required>
-    <input type="number" name="amount" placeholder="Amount (USD)" required>
-    <select name="paymentMethod" required>
-        <option value="" disabled selected>Select Payment Method</option>
-        <option value="card">Pay with Card</option>
-        <option value="transfer">Bank Transfer</option>
-    </select>
-    <button type="submit" class="card">Proceed to Payment</button>
+<form id="checkoutForm" action="https://formspree.io/f/mpqylnzl" method="POST">
+
+<input type="hidden" name="reference" id="reference">
+
+<input type="text" name="clientName" placeholder="Full Name" required>
+<input type="email" name="clientEmail" placeholder="Email Address" required>
+<input type="number" name="amount" placeholder="Amount (USD)" required>
+
+<select name="paymentMethod" required>
+<option value="" disabled selected>Select Payment Method</option>
+<option value="card">Pay with Card</option>
+<option value="transfer">Bank Transfer</option>
+</select>
+
+<button type="submit" class="card">Proceed to Payment</button>
+
 </form>
 
 </div>
@@ -140,17 +146,18 @@ return "GFSSGA-" + Math.floor(Math.random()*1000000000);
 
 document.getElementById('checkoutForm').addEventListener('submit', function(e){
 
-e.preventDefault();
-
 const reference = generateReference();
 
-alert("Your Payment Reference: " + reference + "\nPlease include this reference in your payment.");
+document.getElementById('reference').value = reference;
 
-const form = e.target;
-const method = form.paymentMethod.value;
+alert("Your Payment Reference: " + reference + "\nPlease include this reference when completing payment.");
+
+const method = document.querySelector('[name="paymentMethod"]').value;
 
 const payoneerLink = "https://payoneer.com/payment-request/XXXXXX";
 const greyLink = "transfer.html";
+
+setTimeout(function(){
 
 if(method === "card"){
 window.open(payoneerLink,"_blank");
@@ -158,6 +165,8 @@ window.open(payoneerLink,"_blank");
 else if(method === "transfer"){
 window.location.href = greyLink;
 }
+
+}, 1500);
 
 });
 
