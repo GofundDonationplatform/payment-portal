@@ -2,55 +2,54 @@
 <html>
 <head>
   <title>Pay with Card</title>
-  <style>
-    body { font-family: Arial; text-align: center; padding-top: 50px; background: #f4f6f8; }
-    .container { width: 400px; margin: auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    button { padding: 15px; width: 100%; font-size: 18px; border: none; border-radius: 6px; cursor: pointer; background: #0066ff; color: white; margin-top: 20px; }
-  </style>
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
 </head>
-<body>
 
-<div class="container">
+<body style="font-family: Arial; text-align: center; padding-top: 100px;">
+
   <h2>Pay with Card</h2>
   <p>Complete your payment securely using your card.</p>
 
-  <input type="number" id="amount" placeholder="Enter Amount (USD)" style="width: 100%; padding: 10px; font-size: 16px; margin-top: 10px; border-radius: 4px; border: 1px solid #ccc;">
+  <input type="number" id="amount" placeholder="Enter Amount (USD)" />
+  <br><br>
 
-  <button id="payButton">Pay Now</button>
-</div>
+  <button onclick="makePayment()">Pay Now</button>
 
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-<script>
-  const payButton = document.getElementById('payButton');
+  <script>
+    function makePayment() {
+      let amount = document.getElementById("amount").value;
 
-  payButton.addEventListener('click', function () {
-    const amount = document.getElementById('amount').value;
+      if (!amount) {
+        alert("Please enter amount");
+        return;
+      }
 
-    if(!amount || amount <= 0){
-      alert("Please enter a valid amount.");
-      return;
+      FlutterwaveCheckout({
+        public_key:"FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X"
+        tx_ref: "tx-" + Date.now(),
+        amount: amount,
+        currency: "USD",
+        payment_options: "card",
+        customer: {
+          email: "customer@email.com",
+          name: "Customer"
+        },
+        callback: function (data) {
+          alert("Payment successful!");
+          console.log(data);
+        },
+        onclose: function () {
+          console.log("Payment closed");
+        },
+        customizations: {
+          title: "GFSSGA Secure Payment",
+          description: "Service Payment",
+        }
+      });
     }
-
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X"
-      tx_ref: "SSP_" + Math.floor((Math.random() * 1000000000) + 1),
-      amount: amount,
-      currency: "USD",
-      payment_options: "card, banktransfer, ussd",
-      redirect_url: "https://payment-portal-self.vercel.app/success.html", // Page after successful payment
-      customer: {
-        email: "customer@example.com", // Can be dynamic if you collect email
-        name: "Customer Name",
-        phonenumber: "+2348012345678"
-      },
-      customizations: {
-        title: "Secure Service Payment Portal",
-        description: "Payment via GFSSGA IMPACT NETWORK",
-        logo: "https://payment-portal-self.vercel.app/logo.png"
-      },
-    });
-  });
-</script>
-
+  </script>
+<hr>
+<p>© 2026 GFSSGA Impact Network | Secure Payment Portal</p>
 </body>
 </html>
+
