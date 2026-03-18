@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0066ff, #00ccff);
+      background: #001f4d; /* solid navy background */
       text-align: center;
       padding-top: 50px;
       margin: 0;
@@ -27,6 +27,9 @@
     img.logo {
       width: 150px;
       margin-bottom: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h2 {
@@ -50,7 +53,7 @@
     }
 
     .card {
-      background: #0066ff;
+      background: #001f4d; /* navy blue button */
       color: white;
     }
 
@@ -183,12 +186,12 @@
     }
 
     FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X", // your public key
+      public_key: "FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X",
       tx_ref: "GFSSGA-" + Math.floor((Math.random() * 1000000000) + 1),
       amount: amount,
       currency: "USD",
       payment_options: "card",
-      redirect_url: window.location.href, // redirect after payment
+      redirect_url: window.location.href,
       customer: {
         email: "contact@gfssga-impact-network.org",
         phonenumber: "+2349100000000",
