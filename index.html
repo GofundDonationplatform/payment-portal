@@ -3,254 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GFSSGA-IMPACT-NETWORK Secure Service Payment Portal</title>
-
+<title>GFSSGA-IMPACT-NETWORK | Secure Payment Portal</title>
 <style>
-  /* Reset some defaults */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding-top: 40px;
-  }
-
-  .container {
-    background: white;
-    width: 95%;
-    max-width: 480px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #001f4d, #003366); /* navy blue radiant */
+    margin: 0;
+    padding: 0;
+    color: #fff;
     text-align: center;
   }
 
-  /* Header Section */
-  .header {
-    background: #002147; /* Navy Blue */
-    padding: 20px;
-    border-radius: 10px 10px 0 0;
-    color: white;
+  .container {
+    max-width: 500px;
+    margin: 60px auto;
+    background: #fff;
+    color: #000;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
   }
 
-  .header img {
-    max-width: 120px;
-    height: auto;
-    margin-bottom: 10px;
+  img.logo {
+    width: 120px;
+    margin-bottom: 20px;
   }
 
   h1 {
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
 
-  h2 {
-    font-size: 18px;
-    font-weight: normal;
-    margin-bottom: 15px;
+  p.intro {
+    font-size: 16px;
+    margin-bottom: 25px;
   }
 
-  .intro {
-    font-size: 14px;
-    color: #333;
-    margin: 15px 0 25px 0;
-    line-height: 1.5;
-  }
-
-  /* Buttons */
-  button {
+  .btn {
     display: block;
     width: 100%;
-    margin-top: 15px;
     padding: 15px;
-    font-size: 16px;
+    margin-bottom: 15px;
+    font-size: 18px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    color: #fff;
   }
 
-  .card {
-    background: #0066ff;
-    color: white;
+  .card-btn { background-color: #0066ff; }
+  .transfer-btn { background-color: #28a745; }
+
+  footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #fff;
   }
 
-  .card:hover { background: #0052cc; }
-
-  .transfer {
-    background: #28a745;
-    color: white;
-  }
-
-  .transfer:hover { background: #1e7e34; }
-
-  /* Footer */
-  .footer {
-    margin-top: 25px;
-    font-size: 12px;
-    color: #555;
-  }
-
-  /* Mini popup cards */
-  .popup-card {
+  /* Popup styles */
+  .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    z-index: 1000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 90%;
+    z-index: 100;
+    text-align: left;
   }
 
-  .popup-card h3 {
-    margin-bottom: 15px;
-  }
-
-  .popup-card input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-
-  .popup-card button {
-    width: 100%;
-  }
-
-  /* Overlay */
-  .overlay {
+  .popup h2 { margin-top: 0; }
+  .popup button { margin-top: 10px; }
+  .popup-overlay {
     display: none;
     position: fixed;
     top:0; left:0;
-    width:100%;
-    height:100%;
+    width:100%; height:100%;
     background: rgba(0,0,0,0.5);
-    z-index: 900;
+    z-index: 50;
   }
-
 </style>
 </head>
-
 <body>
 
 <div class="container">
-  <!-- Header with logo -->
-  <div class="header">
-    <img src="logo.png" alt="GFSSGA-IMPACT-NETWORK Logo">
-    <h1>GFSSGA-IMPACT-NETWORK</h1>
-    <h2>Secure Service Payment Portal</h2>
-  </div>
+  <img src="logo.png" alt="GFSSGA-IMPACT-NETWORK Logo" class="logo">
+  <h1>GFSSGA-IMPACT-NETWORK</h1>
+  <h2>Secure Service Payment Portal</h2>
+  <p class="intro">Welcome to the Secure Payment Portal. Clients can make card payments via Flutterwave or bank transfers safely and seamlessly.</p>
 
-  <!-- Intro paragraph -->
-  <p class="intro">
-    Welcome to GFSSGA-IMPACT-NETWORK Secure Service Payment Portal.
-    Make fast, secure, and reliable payments for our services using Card or Bank Transfer.
-    All transactions are safe, transparent, and professionally managed.
-  </p>
-
-  <!-- Payment buttons -->
-  <button class="card" onclick="showCardPopup()">Pay with Card</button>
-  <button class="transfer" onclick="showBankPopup()">Pay via Bank Transfer</button>
-
-  <!-- Footer -->
-  <div class="footer">
-    © 2026 GFSSGA Impact Network | Secure Payment Portal
-  </div>
+  <button class="btn card-btn" onclick="showPopup('cardPopup')">Pay with Card</button>
+  <button class="btn transfer-btn" onclick="showPopup('transferPopup')">Pay via Bank Transfer</button>
 </div>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay"></div>
-
 <!-- Card Payment Popup -->
-<div class="popup-card" id="cardPopup">
-  <h3>Pay with Card</h3>
+<div id="cardPopup" class="popup">
+  <h2>Pay with Card</h2>
   <p>Complete your payment securely using your card.</p>
-  <input type="number" id="cardAmount" placeholder="Enter Amount (USD)">
-  <button onclick="payWithFlutterwave()">Pay Now</button>
-  <button onclick="closePopup()">Cancel</button>
+  <label>Enter Amount (USD)</label>
+  <input type="number" id="cardAmount" placeholder="Amount in USD" style="width:100%;padding:10px;margin-top:10px;">
+  <button class="btn card-btn" onclick="payWithCard()">Pay Now</button>
 </div>
 
 <!-- Bank Transfer Popup -->
-<div class="popup-card" id="bankPopup">
-  <h3>Bank Transfer Details</h3>
-  <p>Use the information below to complete your payment via bank transfer.</p>
-  <p><strong>Account Holder:</strong> GFSSGA IMPACT NETWORK</p>
-  <p><strong>Account Number:</strong> 214673810876</p>
-  <p><strong>Bank Name:</strong> Lead Bank</p>
-  <p><strong>Country:</strong> US</p>
-  <p><strong>ACH Routing:</strong> 101019644</p>
-  <p><strong>Wire Routing:</strong> 101019644</p>
-  <p><strong>Bank Address:</strong> 1801 Main St., Kansas City, MO 64108</p>
-  <p><strong>Account Type:</strong> Checking</p>
-  <button onclick="closePopup()">Close</button>
+<div id="transferPopup" class="popup">
+  <h2>Bank Transfer Details</h2>
+  <p><strong>ACCOUNT HOLDER:</strong> GFSSGA IMPACT NETWORK<br>
+     <strong>ACCOUNT NUMBER:</strong> 214673810876<br>
+     <strong>BANK NAME:</strong> Lead Bank<br>
+     <strong>COUNTRY CODE:</strong> US<br>
+     <strong>ACH ROUTING:</strong> 101019644<br>
+     <strong>WIRE ROUTING:</strong> 101019644<br>
+     <strong>BANK ADDRESS:</strong> 1801 Main St., Kansas City, MO 64108<br>
+     <strong>ACCOUNT TYPE:</strong> Checking</p>
 </div>
 
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+
+<footer>© 2026 GFSSGA Impact Network | Secure Payment Portal</footer>
+
 <script>
-  const overlay = document.getElementById('overlay');
-  const cardPopup = document.getElementById('cardPopup');
-  const bankPopup = document.getElementById('bankPopup');
+function showPopup(id) {
+  document.getElementById(id).style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+function closePopup() {
+  document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+  document.getElementById('overlay').style.display = 'none';
+}
 
-  function showCardPopup() {
-    overlay.style.display = 'block';
-    cardPopup.style.display = 'block';
-  }
+// Flutterwave test key integration
+function payWithCard() {
+  var amount = document.getElementById('cardAmount').value;
+  if(amount === "" || amount <= 0) { alert("Please enter a valid amount"); return; }
 
-  function showBankPopup() {
-    overlay.style.display = 'block';
-    bankPopup.style.display = 'block';
-  }
-
-  function closePopup() {
-    overlay.style.display = 'none';
-    cardPopup.style.display = 'none';
-    bankPopup.style.display = 'none';
-  }
-
-  // Flutterwave Card Payment
-  function payWithFlutterwave() {
-    const amount = document.getElementById('cardAmount').value;
-    if (!amount || amount <= 0) {
-      alert('Please enter a valid amount');
-      return;
-    }
-
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X", // <-- Replace with your live key when ready
-      tx_ref: "GFSSGA-" + Math.floor((Math.random() * 1000000) + 1),
-      amount: amount,
-      currency: "USD",
-      payment_options: "card",
-      customer: {
-        email: "client@example.com", // replace dynamically if you have client email
-      },
-      customizations: {
-        title: "GFSSGA-IMPACT-NETWORK Payment",
-        description: "Secure Service Payment Portal",
-        logo: "logo.png"
-      },
-      callback: function (data) {
-        alert('Payment Status: ' + data.status);
-        closePopup();
-      },
-      onclose: function() {
-        closePopup();
-      },
-    });
-  }
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK_TEST-7f71d97e7d37bbb880ab0122a956a2c1-X",
+    tx_ref: "GFSSGA-" + Math.floor((Math.random() * 1000000000) + 1),
+    amount: amount,
+    currency: "USD",
+    payment_options: "card",
+    redirect_url: "https://payment-portal-self.vercel.app/", // redirect after payment
+    meta: { consumer_id: "GFSSGA-IMPACT-NETWORK" },
+    customer: { email: "example@secureportal.com" },
+    customizations: { title: "Secure Payment Portal", description: "Card Payment for GFSSGA Impact Network" }
+  });
+  closePopup();
+}
 </script>
 
-<!-- Flutterwave Inline JS -->
+<!-- Include Flutterwave Checkout script -->
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 </body>
