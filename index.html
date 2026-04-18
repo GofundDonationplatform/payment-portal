@@ -233,27 +233,8 @@ async function payWithCard() {
         return;
     }
 
-    alert("🚀 Starting payment...");
-
-    try {
-        const response = await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/initiate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                amount: amount,
-                email: "client@example.com"
-            })
-        });
-
-        alert("📡 Backend responded");
-
-        const data = await response.json();
-
-        alert("✅ Got tx_ref: " + data.tx_ref);
-
-        const txRef = data.tx_ref;
+    // ⚡ Generate instantly (no backend delay)
+     const txRef = "GFSSGA_" + Date.now();
 
         FlutterwaveCheckout({
             public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
