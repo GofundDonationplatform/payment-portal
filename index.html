@@ -256,27 +256,28 @@ async function payWithCard() {
         const txRef = data.tx_ref;
 
         FlutterwaveCheckout({
-            public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-            tx_ref: txRef,
-            amount: amount,
-            currency: "USD",
-            payment_options: "card",
+    public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
 
-            redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+    tx_ref: txRef,
+    amount: amount,
+    currency: "USD",
+    payment_options: "card",
 
-            callback: async function (response) {
-                alert("💳 Payment completed");
+    redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
 
-                try {
-                    await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            transaction_id: response.transaction_id
-                        })
-                    });
+    customer: {
+        email: "client@example.com",
+        name: "GFSSGA Client"
+    },
+
+    customer_email: "client@example.com",
+
+    customizations: {
+        title: "GFSSGA-IMPACT-NETWORK",
+        description: "Secure Payment Portal",
+        logo: "https://payment-portal-self.vercel.app/logo.png"
+    }
+      });
 
                     alert("✅ Payment verified");
                 } catch (err) {
