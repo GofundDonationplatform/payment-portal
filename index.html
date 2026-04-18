@@ -219,12 +219,23 @@ footer {
 
 <script>
 // Popups
-function openCardPopup() { document.getElementById('cardPopup').style.display = 'flex'; }
-function closeCardPopup() { document.getElementById('cardPopup').style.display = 'none'; }
-function openTransferPopup() { document.getElementById('transferPopup').style.display = 'flex'; }
-function closeTransferPopup() { document.getElementById('transferPopup').style.display = 'none'; }
+function openCardPopup() {
+    document.getElementById('cardPopup').style.display = 'flex';
+}
 
-// ✅ UPDATED Flutterwave Integration (Backend Connected)
+function closeCardPopup() {
+    document.getElementById('cardPopup').style.display = 'none';
+}
+
+function openTransferPopup() {
+    document.getElementById('transferPopup').style.display = 'flex';
+}
+
+function closeTransferPopup() {
+    document.getElementById('transferPopup').style.display = 'none';
+}
+
+// ✅ Payment Function (instant)
 async function payWithCard() {
     var amount = document.getElementById('cardAmount').value;
 
@@ -233,51 +244,45 @@ async function payWithCard() {
         return;
     }
 
-    // ⚡ Generate instantly (no backend delay)
-     const txRef = "GFSSGA_" + Date.now();
+    const txRef = "GFSSGA_" + Date.now();
 
-        FlutterwaveCheckout({
-            public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-            tx_ref: txRef,
-            amount: amount,
-            currency: "USD",
-            payment_options: "card",
+    FlutterwaveCheckout({
+        public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
 
-          customer: {
-         email: "client@example.com",
-         name: "GFSSGA Client"
+        tx_ref: txRef,
+        amount: amount,
+        currency: "USD",
+        payment_options: "card",
+
+        customer: {
+            email: "client@example.com",
+            name: "GFSSGA Client"
         },
 
-         // ✅ ADD THIS LINE (IMPORTANT)
-          customer_email: "client@example.com",
+        customer_email: "client@example.com",
 
-            redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+        redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
 
-            callback: async function (response) {
-                alert("💳 Payment completed");
+        callback: async function (response) {
+            alert("💳 Payment completed");
 
-                try {
-                    await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            transaction_id: response.transaction_id
-                        })
-                    });
+            try {
+                await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        transaction_id: response.transaction_id
+                    })
+                });
 
-                    alert("✅ Payment verified");
-                } catch (err) {
-                    alert("❌ Verification failed");
-                }
+                alert("✅ Payment verified");
+            } catch (err) {
+                alert("❌ Verification failed");
             }
-        });
-
-    } catch (error) {
-        alert("❌ Backend connection failed");
-        console.error(error);
-    }
+        }
+    });
 }
 </script>
 
