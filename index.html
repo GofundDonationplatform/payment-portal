@@ -135,7 +135,16 @@ We are committed to delivering secure, reliable, and efficient services tailored
 
 <input type="text" id="customerName" placeholder="Enter Your Name">
 <input type="email" id="customerEmail" placeholder="Enter Your Email">
-<input type="number" id="cardAmount" placeholder="Enter Amount (USD)">
+
+<select id="currency">
+  <option value="USD">USD ($)</option>
+  <option value="NGN">NGN (₦)</option>
+  <option value="GBP">GBP (£)</option>
+  <option value="EUR">EUR (€)</option>
+  <option value="CAD">CAD ($)</option>
+</select>
+
+<input type="number" id="cardAmount" placeholder="Enter Amount">
 
 <button onclick="payWithCard()">Pay Now</button>
 <button onclick="closeCardPopup()">Cancel</button>
@@ -172,57 +181,82 @@ We are committed to delivering secure, reliable, and efficient services tailored
 © 2026 GFSSGA Impact Network | Secure Payment Portal
 </footer>
 
+<!-- Flutterwave FIRST -->
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
 <script>
-window.openCardPopup = function(){
-    document.getElementById('cardPopup').style.display='flex';
-}
+// Wait until page fully loads
+document.addEventListener("DOMContentLoaded", function () {
 
-window.closeCardPopup = function(){
-    document.getElementById('cardPopup').style.display='none';
-}
+  // 🔘 POPUPS
+  window.openCardPopup = function () {
+    document.getElementById("cardPopup").style.display = "flex";
+  };
 
-window.openTransferPopup = function(){
-    document.getElementById('transferPopup').style.display='flex';
-}
+  window.closeCardPopup = function () {
+    document.getElementById("cardPopup").style.display = "none";
+  };
 
-window.closeTransferPopup = function(){
-    document.getElementById('transferPopup').style.display='none';
-}
+  window.openTransferPopup = function () {
+    document.getElementById("transferPopup").style.display = "flex";
+  };
 
-window.payWithCard = async function(){
-    const amount=document.getElementById('cardAmount').value;
-    const name=document.getElementById('customerName').value;
-    const email=document.getElementById('customerEmail').value;
+  window.closeTransferPopup = function () {
+    document.getElementById("transferPopup").style.display = "none";
+  };
 
-    if(!amount||!name||!email){
-        alert("Please fill all fields");
-        return;
+  // 💳 PAYMENT FUNCTION
+  window.payWithCard = async function () {
+    const amount = document.getElementById("cardAmount").value;
+    const email = document.getElementById("customerEmail").value;
+    const name = document.getElementById("customerName").value;
+    const currency = document.getElementById("currency").value;
+
+    if (!amount || !email || !name || !currency) {
+      alert("Please fill all fields");
+      return;
     }
 
-    const txRef="GFSSGA_"+Date.now();
+    const txRef = "GFSSGA_" + Date.now();
 
     FlutterwaveCheckout({
-        public_key:"FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-        tx_ref:txRef,
-        amount:amount,
-        currency:"USD",
-        payment_options:"card",
+      public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
 
-        customer:{email:email,name:name},
-        customer_email:email,
+      tx_ref: txRef,
+      amount: amount,
+      currency: currency, // ✅ dynamic currency
+      payment_options: "card",
 
-        redirect_url:"https://payment-portal-self.vercel.app/card-payment-success.html",
+      customer: {
+        email: email,
+        name: name,
+      },
 
-        callback:async function(response){
-            await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify({transaction_id:response.transaction_id})
-            });
-            alert("Payment successful");
+      customer_email: email,
+
+      redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+
+      callback: async function (response) {
+        try {
+          await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              transaction_id: response.transaction_id,
+            }),
+          });
+
+          alert("✅ Payment successful");
+        } catch (err) {
+          alert("❌ Verification failed");
         }
+      },
     });
-}
+  };
+
+});
 </script>
 
 
