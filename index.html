@@ -21,7 +21,6 @@ body {
     background: rgba(255, 255, 255, 0.05);
     padding: 40px 20px;
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
 .logo {
@@ -29,57 +28,32 @@ body {
     margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
 .intro {
     font-size: 15px;
     margin-bottom: 25px;
-    line-height: 1.5;
     color: #e0e0e0;
 }
 
 button {
-    display: block;
     width: 100%;
     padding: 15px;
-    font-size: 18px;
-    margin-bottom: 15px;
+    margin: 10px 0;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    opacity: 0.9;
-}
+.card-btn { background: #0066ff; color: white; }
+.transfer-btn { background: #28a745; color: white; }
 
-.card-btn {
-    background: #0066ff;
-    color: white;
-}
-
-.transfer-btn {
-    background: #28a745;
-    color: white;
-}
-
-/* Popups */
 .popup-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.6);
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
 }
 
 .popup {
@@ -88,164 +62,155 @@ button:hover {
     padding: 25px;
     border-radius: 12px;
     width: 90%;
-    max-width: 400px;
-    text-align: left;
-}
-
-.popup h2 {
-    margin-top: 0;
-    font-size: 20px;
-    text-align: center;
 }
 
 .popup input {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
-    font-size: 15px;
-}
-
-.popup button {
-    width: 48%;
-    font-size: 16px;
-    margin: 5px 1%;
 }
 
 footer {
     margin-top: 40px;
-    font-size: 14px;
     color: #ccc;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
-    <img src="logo.png" alt="GFSSGA-IMPACT-NETWORK Logo" class="logo">
-    <h1>GFSSGA-IMPACT-NETWORK</h1>
-    <p class="intro">
-        Secure Service Payment Portal<br>
-        Fast, Safe, and Reliable Payments for our Clients<br>
-        Choose your preferred payment method below
-    </p>
+<img src="logo.png" class="logo">
 
-    <button class="card-btn" onclick="openCardPopup()">Pay with Card</button>
-    <button class="transfer-btn" onclick="openTransferPopup()">Bank Transfer</button>
+<h1>GFSSGA-IMPACT-NETWORK</h1>
+
+<p class="intro">
+Secure Service Payment Portal<br>
+Fast, Safe, and Reliable Payments for our Clients<br>
+Choose your preferred payment method below
+</p>
+
+<div style="text-align:left; color:#e0e0e0;">
+<h3>About Us</h3>
+<p>
+GFSSGA IMPACT NETWORK is a service-based organization providing digital support,
+project assistance, and professional service coordination for individuals and businesses.
+We are committed to delivering secure, reliable, and efficient services tailored to client needs.
+</p>
+
+<h3>Our Services</h3>
+<ul>
+<li>Digital support services</li>
+<li>Project assistance</li>
+<li>Consultation</li>
+<li>Secure payment processing</li>
+</ul>
+
+<h3>Service Deliverables</h3>
+<ul>
+<li>Professional support</li>
+<li>Timely delivery</li>
+<li>Secure transactions</li>
+<li>Client communication</li>
+</ul>
+
+<h3>How It Works</h3>
+<ol>
+<li>Client contacts us</li>
+<li>Service is agreed</li>
+<li>Cost confirmed</li>
+<li>Payment made</li>
+<li>Service delivered</li>
+</ol>
 </div>
 
-<!-- Card Payment Popup -->
+<button class="card-btn" onclick="openCardPopup()">Pay with Card</button>
+<button class="transfer-btn" onclick="openTransferPopup()">Bank Transfer</button>
+</div>
+
+<!-- CARD POPUP -->
 <div class="popup-overlay" id="cardPopup">
-    <div class="popup">
-        <h2>Pay with Card</h2>
+<div class="popup">
+<h2>Pay with Card</h2>
 
-        <!-- ✅ NEW INPUTS -->
-        <input type="text" id="customerName" placeholder="Enter Your Name">
-        <input type="email" id="customerEmail" placeholder="Enter Your Email">
+<input type="text" id="customerName" placeholder="Enter Your Name">
+<input type="email" id="customerEmail" placeholder="Enter Your Email">
+<input type="number" id="cardAmount" placeholder="Enter Amount (USD)">
 
-        <input type="number" id="cardAmount" placeholder="Enter Amount (USD)">
-
-        <div style="text-align:center;">
-            <button onclick="payWithCard()">Pay Now</button>
-            <button onclick="closeCardPopup()">Cancel</button>
-        </div>
-    </div>
+<button onclick="payWithCard()">Pay Now</button>
+<button onclick="closeCardPopup()">Cancel</button>
+</div>
 </div>
 
-<!-- Bank Transfer Popup -->
+<!-- TRANSFER POPUP -->
 <div class="popup-overlay" id="transferPopup">
-    <div class="popup">
-        <h2>Bank Transfer Details</h2>
-        <p><strong>Account Holder:</strong> GFSSGA IMPACT NETWORK</p>
-        <p><strong>Account Number:</strong> 214673810876</p>
-        <p><strong>Bank Name:</strong> Lead Bank</p>
-        <p><strong>Country Code:</strong> US</p>
-        <p><strong>ACH Routing:</strong> 101019644</p>
-        <p><strong>Wire Routing:</strong> 101019644</p>
-        <p><strong>Bank Address:</strong> 1801 Main St., Kansas City, MO</p>
+<div class="popup">
+<h2>Bank Transfer Details</h2>
 
-        <div style="text-align:center;">
-            <button onclick="closeTransferPopup()">Close</button>
-        </div>
-    </div>
+<p><strong>Account Holder:</strong> GFSSGA IMPACT NETWORK</p>
+<p><strong>Account Number:</strong> 214673810876</p>
+<p><strong>Bank Name:</strong> Lead Bank</p>
+<p><strong>Country Code:</strong> US</p>
+<p><strong>ACH Routing:</strong> 101019644</p>
+<p><strong>Wire Routing:</strong> 101019644</p>
+<p><strong>Bank Address:</strong> 1801 Main St., Kansas City, MO 64108</p>
+<p><strong>Account Type:</strong> Checking</p>
+
+<button onclick="closeTransferPopup()">Close</button>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div style="margin-top:20px; text-align:left; color:#e0e0e0;">
+<h3>Contact Us</h3>
+<p>Email: support@gfssga.com</p>
+<p>Whatsapp: +971557986376</p>
+<p>Address: USA</p>
 </div>
 
 <footer>
-    © 2026 GFSSGA Impact Network | Secure Payment Portal
+© 2026 GFSSGA Impact Network | Secure Payment Portal
 </footer>
 
 <script>
-// Popups
-function openCardPopup() {
-    document.getElementById('cardPopup').style.display = 'flex';
+function openCardPopup(){document.getElementById('cardPopup').style.display='flex'}
+function closeCardPopup(){document.getElementById('cardPopup').style.display='none'}
+function openTransferPopup(){document.getElementById('transferPopup').style.display='flex'}
+function closeTransferPopup(){document.getElementById('transferPopup').style.display='none'}
+
+async function payWithCard(){
+const amount=document.getElementById('cardAmount').value;
+const name=document.getElementById('customerName').value;
+const email=document.getElementById('customerEmail').value;
+
+if(!amount||!name||!email){
+alert("Please fill all fields");
+return;
 }
 
-function closeCardPopup() {
-    document.getElementById('cardPopup').style.display = 'none';
+const txRef="GFSSGA_"+Date.now();
+
+FlutterwaveCheckout({
+public_key:"FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
+tx_ref:txRef,
+amount:amount,
+currency:"USD",
+payment_options:"card",
+
+customer:{email:email,name:name},
+customer_email:email,
+
+redirect_url:"https://payment-portal-self.vercel.app/card-payment-success.html",
+
+callback:async function(response){
+await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({transaction_id:response.transaction_id})
+});
+alert("Payment successful");
 }
-
-function openTransferPopup() {
-    document.getElementById('transferPopup').style.display = 'flex';
-}
-
-function closeTransferPopup() {
-    document.getElementById('transferPopup').style.display = 'none';
-}
-
-// ✅ PAYMENT FUNCTION (UPDATED)
-async function payWithCard() {
-    const amount = document.getElementById('cardAmount').value;
-    const name = document.getElementById('customerName').value;
-    const email = document.getElementById('customerEmail').value;
-
-    if (!amount || amount <= 0) {
-        alert('Enter a valid amount');
-        return;
-    }
-
-    if (!name || !email) {
-        alert('Enter your name and email');
-        return;
-    }
-
-    const txRef = "GFSSGA_" + Date.now();
-
-    FlutterwaveCheckout({
-        public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-
-        tx_ref: txRef,
-        amount: amount,
-        currency: "USD",
-        payment_options: "card",
-
-        customer: {
-            email: email,
-            name: name
-        },
-
-        customer_email: email,
-
-        redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
-
-        callback: async function (response) {
-            alert("💳 Payment completed");
-
-            try {
-                await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        transaction_id: response.transaction_id
-                    })
-                });
-
-                alert("✅ Payment verified");
-            } catch (err) {
-                alert("❌ Verification failed");
-            }
-        }
-    });
+});
 }
 </script>
 
