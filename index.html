@@ -181,14 +181,11 @@ We are committed to delivering secure, reliable, and efficient services tailored
 © 2026 GFSSGA Impact Network | Secure Payment Portal
 </footer>
 
-<!-- Flutterwave FIRST -->
-<script src="https://checkout.flutterwave.com/v3.js"></script>
 
-<!-- Flutterwave Script -->
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
-// 🔘 POPUPS (GLOBAL - FIXED)
+// 🔘 POPUPS
 function openCardPopup() {
   document.getElementById("cardPopup").style.display = "flex";
 }
@@ -205,8 +202,8 @@ function closeTransferPopup() {
   document.getElementById("transferPopup").style.display = "none";
 }
 
-// 💳 PAYMENT FUNCTION (GLOBAL)
-async function payWithCard() {
+// 💳 PAYMENT
+function payWithCard() {
   const amount = document.getElementById("cardAmount").value;
   const email = document.getElementById("customerEmail").value;
   const name = document.getElementById("customerName").value;
@@ -221,7 +218,6 @@ async function payWithCard() {
 
   FlutterwaveCheckout({
     public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-
     tx_ref: txRef,
     amount: amount,
     currency: currency,
@@ -232,32 +228,23 @@ async function payWithCard() {
       name: name,
     },
 
-    customer_email: email,
-
     redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
 
-    callback: async function (response) {
-      try {
-        await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            transaction_id: response.transaction_id,
-          }),
-        });
+    callback: function (response) {
+      fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          transaction_id: response.transaction_id,
+        }),
+      });
 
-        alert("✅ Payment successful");
-      } catch (err) {
-        alert("❌ Verification failed");
-      }
+      alert("Payment completed");
     }
   });
 }
 </script>
-
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-
 </body>
 </html>
