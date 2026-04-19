@@ -124,8 +124,8 @@ We are committed to delivering secure, reliable, and efficient services tailored
 </ol>
 </div>
 
-<button class="card-btn" onclick="openCardPopup()">Pay with Card</button>
-<button class="transfer-btn" onclick="openTransferPopup()">Bank Transfer</button>
+<button class="card-btn" id="cardBtn">Pay with Card</button>
+<button class="transfer-btn" id="transferBtn">Bank Transfer</button>
 </div>
 
 <!-- CARD POPUP -->
@@ -245,6 +245,20 @@ function payWithCard() {
     }
   });
 }
+</script>
+
+<script>
+alert("JS running"); // debug
+
+document.getElementById("cardBtn").addEventListener("click", function () {
+  alert("Card clicked");
+  document.getElementById("cardPopup").style.display = "flex";
+});
+
+document.getElementById("transferBtn").addEventListener("click", function () {
+  alert("Transfer clicked");
+  document.getElementById("transferPopup").style.display = "flex";
+});
 </script>
 </body>
 </html>
