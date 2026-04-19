@@ -184,81 +184,78 @@ We are committed to delivering secure, reliable, and efficient services tailored
 <!-- Flutterwave FIRST -->
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
+<!-- Flutterwave Script -->
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
 <script>
-// Wait until page fully loads
-document.addEventListener("DOMContentLoaded", function () {
+// 🔘 POPUPS (GLOBAL - FIXED)
+function openCardPopup() {
+  document.getElementById("cardPopup").style.display = "flex";
+}
 
-  // 🔘 POPUPS
-  window.openCardPopup = function () {
-    document.getElementById("cardPopup").style.display = "flex";
-  };
+function closeCardPopup() {
+  document.getElementById("cardPopup").style.display = "none";
+}
 
-  window.closeCardPopup = function () {
-    document.getElementById("cardPopup").style.display = "none";
-  };
+function openTransferPopup() {
+  document.getElementById("transferPopup").style.display = "flex";
+}
 
-  window.openTransferPopup = function () {
-    document.getElementById("transferPopup").style.display = "flex";
-  };
+function closeTransferPopup() {
+  document.getElementById("transferPopup").style.display = "none";
+}
 
-  window.closeTransferPopup = function () {
-    document.getElementById("transferPopup").style.display = "none";
-  };
+// 💳 PAYMENT FUNCTION (GLOBAL)
+async function payWithCard() {
+  const amount = document.getElementById("cardAmount").value;
+  const email = document.getElementById("customerEmail").value;
+  const name = document.getElementById("customerName").value;
+  const currency = document.getElementById("currency").value;
 
-  // 💳 PAYMENT FUNCTION
-  window.payWithCard = async function () {
-    const amount = document.getElementById("cardAmount").value;
-    const email = document.getElementById("customerEmail").value;
-    const name = document.getElementById("customerName").value;
-    const currency = document.getElementById("currency").value;
+  if (!amount || !email || !name || !currency) {
+    alert("Please fill all fields");
+    return;
+  }
 
-    if (!amount || !email || !name || !currency) {
-      alert("Please fill all fields");
-      return;
+  const txRef = "GFSSGA_" + Date.now();
+
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
+
+    tx_ref: txRef,
+    amount: amount,
+    currency: currency,
+    payment_options: "card",
+
+    customer: {
+      email: email,
+      name: name,
+    },
+
+    customer_email: email,
+
+    redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+
+    callback: async function (response) {
+      try {
+        await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            transaction_id: response.transaction_id,
+          }),
+        });
+
+        alert("✅ Payment successful");
+      } catch (err) {
+        alert("❌ Verification failed");
+      }
     }
-
-    const txRef = "GFSSGA_" + Date.now();
-
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-
-      tx_ref: txRef,
-      amount: amount,
-      currency: currency, // ✅ dynamic currency
-      payment_options: "card",
-
-      customer: {
-        email: email,
-        name: name,
-      },
-
-      customer_email: email,
-
-      redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
-
-      callback: async function (response) {
-        try {
-          await fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              transaction_id: response.transaction_id,
-            }),
-          });
-
-          alert("✅ Payment successful");
-        } catch (err) {
-          alert("❌ Verification failed");
-        }
-      },
-    });
-  };
-
-});
+  });
+}
 </script>
-
 
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
