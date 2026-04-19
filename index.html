@@ -184,81 +184,82 @@ We are committed to delivering secure, reliable, and efficient services tailored
 
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+
 <script>
-// 🔘 POPUPS
-function openCardPopup() {
-  document.getElementById("cardPopup").style.display = "flex";
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-function closeCardPopup() {
-  document.getElementById("cardPopup").style.display = "none";
-}
+  // BUTTONS
+  const cardBtn = document.getElementById("cardBtn");
+  const transferBtn = document.getElementById("transferBtn");
 
-function openTransferPopup() {
-  document.getElementById("transferPopup").style.display = "flex";
-}
+  const cardPopup = document.getElementById("cardPopup");
+  const transferPopup = document.getElementById("transferPopup");
 
-function closeTransferPopup() {
-  document.getElementById("transferPopup").style.display = "none";
-}
-
-// 💳 PAYMENT
-function payWithCard() {
-  const amount = document.getElementById("cardAmount").value;
-  const email = document.getElementById("customerEmail").value;
-  const name = document.getElementById("customerName").value;
-  const currency = document.getElementById("currency").value;
-
-  if (!amount || !email || !name || !currency) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  const txRef = "GFSSGA_" + Date.now();
-
-  FlutterwaveCheckout({
-    public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-    tx_ref: txRef,
-    amount: amount,
-    currency: currency,
-    payment_options: "card",
-
-    customer: {
-      email: email,
-      name: name,
-    },
-
-    redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
-
-    callback: function (response) {
-      fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          transaction_id: response.transaction_id,
-        }),
-      });
-
-      alert("Payment completed");
-    }
+  // OPEN POPUPS
+  cardBtn.addEventListener("click", function () {
+    cardPopup.style.display = "flex";
   });
-}
+
+  transferBtn.addEventListener("click", function () {
+    transferPopup.style.display = "flex";
+  });
+
+  // CLOSE POPUPS
+  window.closeCardPopup = function () {
+    cardPopup.style.display = "none";
+  };
+
+  window.closeTransferPopup = function () {
+    transferPopup.style.display = "none";
+  };
+
+  // PAYMENT
+  window.payWithCard = function () {
+    const amount = document.getElementById("cardAmount").value;
+    const email = document.getElementById("customerEmail").value;
+    const name = document.getElementById("customerName").value;
+    const currency = document.getElementById("currency").value;
+
+    if (!amount || !email || !name) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const txRef = "GFSSGA_" + Date.now();
+
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
+      tx_ref: txRef,
+      amount: amount,
+      currency: currency,
+      payment_options: "card",
+
+      customer: {
+        email: email,
+        name: name,
+      },
+
+      redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+
+      callback: function (response) {
+        fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            transaction_id: response.transaction_id,
+          }),
+        });
+
+        alert("✅ Payment completed");
+      }
+    });
+  };
+
+});
 </script>
 
-<script>
-alert("JS running"); // debug
-
-document.getElementById("cardBtn").addEventListener("click", function () {
-  alert("Card clicked");
-  document.getElementById("cardPopup").style.display = "flex";
-});
-
-document.getElementById("transferBtn").addEventListener("click", function () {
-  alert("Transfer clicked");
-  document.getElementById("transferPopup").style.display = "flex";
-});
-</script>
 </body>
 </html>
