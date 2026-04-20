@@ -184,84 +184,79 @@ We are committed to delivering secure, reliable, and efficient services tailored
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+// GET ELEMENTS
+const cardBtn = document.getElementById("cardBtn");
+const transferBtn = document.getElementById("transferBtn");
 
-  const cardBtn = document.getElementById("cardBtn");
-  const transferBtn = document.getElementById("transferBtn");
+const cardPopup = document.getElementById("cardPopup");
+const transferPopup = document.getElementById("transferPopup");
 
-  const cardPopup = document.getElementById("cardPopup");
-  const transferPopup = document.getElementById("transferPopup");
+// OPEN POPUPS
+cardBtn.onclick = function () {
+  cardPopup.style.display = "flex";
+};
 
-  // OPEN POPUPS
-  cardBtn.onclick = function () {
-    cardPopup.style.display = "flex";
-  };
+transferBtn.onclick = function () {
+  transferPopup.style.display = "flex";
+};
 
-  transferBtn.onclick = function () {
-    transferPopup.style.display = "flex";
-  };
+// CLOSE POPUPS
+function closeCardPopup() {
+  cardPopup.style.display = "none";
+}
 
-  // CLOSE POPUPS
-  window.closeCardPopup = function () {
-    cardPopup.style.display = "none";
-  };
+function closeTransferPopup() {
+  transferPopup.style.display = "none";
+}
 
-  window.closeTransferPopup = function () {
-    transferPopup.style.display = "none";
-  };
+// PAYMENT FUNCTION
+function payWithCard() {
+  try {
+    const amount = document.getElementById("cardAmount").value;
+    const email = document.getElementById("customerEmail").value;
+    const name = document.getElementById("customerName").value;
+    const currency = document.getElementById("currency").value;
 
-  // 🔥 SAFE PAYMENT FUNCTION (NO BREAK)
-  window.payWithCard = function () {
-
-    try {
-      const amount = document.getElementById("cardAmount").value;
-      const email = document.getElementById("customerEmail").value;
-      const name = document.getElementById("customerName").value;
-      const currency = document.getElementById("currency").value;
-
-      if (!amount || !email || !name) {
-        alert("Please fill all fields");
-        return;
-      }
-
-      const txRef = "GFSSGA_" + Date.now();
-
-      FlutterwaveCheckout({
-        public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-        tx_ref: txRef,
-        amount: amount,
-        currency: currency,
-        payment_options: "card",
-
-        customer: {
-          email: email,
-          name: name
-        },
-
-        redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
-
-        callback: function (response) {
-          fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              transaction_id: response.transaction_id
-            })
-          });
-
-          alert("✅ Payment completed");
-        }
-      });
-
-    } catch (err) {
-      alert("❌ Script error: " + err.message);
+    if (!amount || !email || !name) {
+      alert("Please fill all fields");
+      return;
     }
 
-  };
+    const txRef = "GFSSGA_" + Date.now();
 
-});
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
+      tx_ref: txRef,
+      amount: amount,
+      currency: currency,
+      payment_options: "card",
+
+      customer: {
+        email: email,
+        name: name
+      },
+
+      redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
+
+      callback: function (response) {
+        fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            transaction_id: response.transaction_id
+          })
+        });
+
+        alert("✅ Payment completed");
+      }
+    });
+
+  } catch (err) {
+    alert("❌ Script error: " + err.message);
+  }
+}
 </script>
 
 </body>
