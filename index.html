@@ -78,7 +78,6 @@ footer {
 </head>
 
 <body>
-<h2 style="color:red;">VERSION 2 TEST</h2>
 <div class="container">
 <img src="logo.png" class="logo">
 
@@ -182,14 +181,12 @@ We are committed to delivering secure, reliable, and efficient services tailored
 </footer>
 
 
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-
+<!-- Flutterwave (ONLY ONCE) -->
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  // BUTTONS
   const cardBtn = document.getElementById("cardBtn");
   const transferBtn = document.getElementById("transferBtn");
 
@@ -197,13 +194,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const transferPopup = document.getElementById("transferPopup");
 
   // OPEN POPUPS
-  cardBtn.addEventListener("click", function () {
+  cardBtn.onclick = function () {
     cardPopup.style.display = "flex";
-  });
+  };
 
-  transferBtn.addEventListener("click", function () {
+  transferBtn.onclick = function () {
     transferPopup.style.display = "flex";
-  });
+  };
 
   // CLOSE POPUPS
   window.closeCardPopup = function () {
@@ -214,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     transferPopup.style.display = "none";
   };
 
-  // PAYMENT
+  // PAYMENT FUNCTION
   window.payWithCard = function () {
     const amount = document.getElementById("cardAmount").value;
     const email = document.getElementById("customerEmail").value;
@@ -237,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       customer: {
         email: email,
-        name: name,
+        name: name
       },
 
       redirect_url: "https://payment-portal-self.vercel.app/card-payment-success.html",
@@ -246,11 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("https://payment-portal-backend-v2lh.onrender.com/api/payment/verify", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            transaction_id: response.transaction_id,
-          }),
+            transaction_id: response.transaction_id
+          })
         });
 
         alert("✅ Payment completed");
@@ -260,6 +257,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-
 </body>
 </html>
