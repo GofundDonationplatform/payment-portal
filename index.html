@@ -180,7 +180,6 @@ We are committed to delivering secure, reliable, and efficient services tailored
 © 2026 GFSSGA Impact Network | Secure Payment Portal
 </footer>
 
-<!-- Flutterwave (ONLY ONCE) -->
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
@@ -192,22 +191,28 @@ window.onload = function () {
   const cardPopup = document.getElementById("cardPopup");
   const transferPopup = document.getElementById("transferPopup");
 
-  // SAFETY CHECK
-  if (!cardBtn || !transferBtn) {
-    alert("❌ Buttons not found");
-    return;
-  }
+  // FORCE OPEN POPUPS (strong method)
+  cardBtn.addEventListener("click", function () {
+    cardPopup.style.display = "block";
+    cardPopup.style.position = "fixed";
+    cardPopup.style.top = "0";
+    cardPopup.style.left = "0";
+    cardPopup.style.width = "100%";
+    cardPopup.style.height = "100%";
+    cardPopup.style.zIndex = "9999";
+  });
 
-  // OPEN POPUPS
-  cardBtn.onclick = function () {
-    cardPopup.style.display = "flex";
-  };
+  transferBtn.addEventListener("click", function () {
+    transferPopup.style.display = "block";
+    transferPopup.style.position = "fixed";
+    transferPopup.style.top = "0";
+    transferPopup.style.left = "0";
+    transferPopup.style.width = "100%";
+    transferPopup.style.height = "100%";
+    transferPopup.style.zIndex = "9999";
+  });
 
-  transferBtn.onclick = function () {
-    transferPopup.style.display = "flex";
-  };
-
-  // CLOSE POPUPS
+  // CLOSE
   window.closeCardPopup = function () {
     cardPopup.style.display = "none";
   };
@@ -216,7 +221,7 @@ window.onload = function () {
     transferPopup.style.display = "none";
   };
 
-  // PAYMENT FUNCTION
+  // PAYMENT
   window.payWithCard = function () {
     try {
       const amount = document.getElementById("cardAmount").value;
@@ -229,11 +234,9 @@ window.onload = function () {
         return;
       }
 
-      const txRef = "GFSSGA_" + Date.now();
-
       FlutterwaveCheckout({
         public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
-        tx_ref: txRef,
+        tx_ref: "GFSSGA_" + Date.now(),
         amount: amount,
         currency: currency,
         payment_options: "card",
@@ -261,7 +264,7 @@ window.onload = function () {
       });
 
     } catch (err) {
-      alert("❌ Script error: " + err.message);
+      alert("❌ Error: " + err.message);
     }
   };
 
