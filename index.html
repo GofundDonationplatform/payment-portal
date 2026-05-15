@@ -145,9 +145,7 @@ We are committed to delivering secure, reliable, and efficient services tailored
 
 <input type="number" id="cardAmount" placeholder="Enter Amount">
 
-<p id="paymentRef" style="font-size:13px;color:#555;"></p>
-
-<button id="payBtn" onclick="payWithCard()">Pay Now</button>
+<button onclick="payWithCard()">Pay Now</button>
 <button onclick="closeCardPopup()">Cancel</button>
 </div>
 </div>
@@ -235,15 +233,10 @@ window.onload = function () {
         alert("Please fill all fields");
         return;
       }
-      const payBtn = document.getElementById("payBtn");
-         payBtn.disabled = true;
-         payBtn.innerHTML = "Processing...";
 
       FlutterwaveCheckout({
         public_key: "FLWPUBK-14fd5daa9cf9023955fa9ba0320fd9f5-X",
         tx_ref: "GFSSGA_" + Date.now();
-        document.getElementById("paymentRef").innerHTML =
-       "Payment Ref: " + txRef;
         amount: amount,
         currency: currency,
         payment_options: "card",
@@ -266,18 +259,8 @@ window.onload = function () {
             })
           });
 
-          closeCardPopup();
-
        alert("✅ Payment completed");
-
-         payBtn.disabled = false;
-         payBtn.innerHTML = "Pay Now";
-
-       onclose: function () {
-        payBtn.disabled = false;
-        payBtn.innerHTML = "Pay Now";
-
-       }
+        }
       });
 
     } catch (err) {
