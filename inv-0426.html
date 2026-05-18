@@ -6,40 +6,40 @@
 <title>Invoice INV-0426</title>
 
 <style>
+
 body{
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
     margin:0;
     padding:20px;
+    background:#f2f2f2;
+    font-family:Arial, sans-serif;
     color:#000;
 }
 
 .invoice-container{
-    max-width:1000px;
+    max-width:1100px;
     margin:auto;
     background:#fff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    padding:40px;
+    border:1px solid #ccc;
 }
 
 .top-header{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
-    border-bottom:2px solid #ccc;
-    padding-bottom:20px;
+    margin-bottom:40px;
 }
 
 .invoice-title{
-    font-size:50px;
+    font-size:60px;
     font-weight:bold;
+    letter-spacing:2px;
 }
 
 .invoice-info{
     text-align:right;
-    line-height:1.8;
     font-size:18px;
+    line-height:2;
 }
 
 .section{
@@ -47,8 +47,8 @@ body{
 }
 
 .billed{
-    line-height:1.8;
-    font-size:22px;
+    font-size:20px;
+    line-height:2;
 }
 
 table{
@@ -59,40 +59,45 @@ table{
 
 table th{
     background:#d9d9d9;
-    padding:15px;
-    border:1px solid #999;
-    font-size:20px;
+    color:#000;
+    border:1px solid #888;
+    padding:14px;
+    font-size:18px;
+    text-align:left;
 }
 
 table td{
-    padding:15px;
-    border:1px solid #999;
-    font-size:18px;
+    border:1px solid #888;
+    padding:14px;
+    font-size:17px;
+    vertical-align:top;
 }
 
 .spec-title{
-    margin-top:25px;
+    margin-top:35px;
+    margin-bottom:15px;
     font-size:24px;
     font-weight:bold;
 }
 
 .total-box{
+    width:350px;
+    margin-left:auto;
     margin-top:30px;
-    text-align:right;
-    font-size:22px;
+    font-size:20px;
     line-height:2;
 }
 
 .grand-total{
-    font-size:36px;
+    font-size:34px;
     font-weight:bold;
+    margin-top:15px;
 }
 
 .payment-box{
-    margin-top:40px;
-    border:1px solid #999;
-    padding:20px;
-    border-radius:8px;
+    margin-top:50px;
+    border:1px solid #888;
+    padding:25px;
 }
 
 .payment-title{
@@ -104,27 +109,40 @@ table td{
 .bank-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:20px;
+    gap:30px;
     margin-top:20px;
 }
 
 .bank-grid p{
-    font-size:18px;
+    margin:0 0 20px;
     line-height:1.8;
+    font-size:17px;
 }
 
 .footer-note{
-    margin-top:30px;
+    margin-top:50px;
     text-align:center;
-    font-size:28px;
-    font-weight:bold;
+    font-size:26px;
     font-style:italic;
+    font-weight:bold;
 }
 
 @media(max-width:768px){
 
+body{
+    padding:10px;
+}
+
+.invoice-container{
+    padding:20px;
+}
+
 .top-header{
     flex-direction:column;
+}
+
+.invoice-title{
+    font-size:40px;
 }
 
 .invoice-info{
@@ -132,25 +150,41 @@ table td{
     margin-top:20px;
 }
 
-.invoice-title{
-    font-size:38px;
+.billed{
+    font-size:17px;
+}
+
+table th,
+table td{
+    font-size:13px;
+    padding:8px;
+}
+
+.total-box{
+    width:100%;
+    font-size:16px;
+}
+
+.grand-total{
+    font-size:24px;
 }
 
 .bank-grid{
     grid-template-columns:1fr;
 }
 
-table th,
-table td{
-    font-size:14px;
-    padding:10px;
+.payment-title{
+    font-size:22px;
 }
 
-.grand-total{
-    font-size:28px;
+.footer-note{
+    font-size:20px;
 }
+
 }
+
 </style>
+
 </head>
 
 <body>
