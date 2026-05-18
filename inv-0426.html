@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice INV-0426</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    margin:0;
+    padding:20px;
+    color:#000;
+}
+
+.invoice-container{
+    max-width:1000px;
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    border-bottom:2px solid #ccc;
+    padding-bottom:20px;
+}
+
+.invoice-title{
+    font-size:50px;
+    font-weight:bold;
+}
+
+.invoice-info{
+    text-align:right;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.section{
+    margin-top:30px;
+}
+
+.billed{
+    line-height:1.8;
+    font-size:22px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table th{
+    background:#d9d9d9;
+    padding:15px;
+    border:1px solid #999;
+    font-size:20px;
+}
+
+table td{
+    padding:15px;
+    border:1px solid #999;
+    font-size:18px;
+}
+
+.spec-title{
+    margin-top:25px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.total-box{
+    margin-top:30px;
+    text-align:right;
+    font-size:22px;
+    line-height:2;
+}
+
+.grand-total{
+    font-size:36px;
+    font-weight:bold;
+}
+
+.payment-box{
+    margin-top:40px;
+    border:1px solid #999;
+    padding:20px;
+    border-radius:8px;
+}
+
+.payment-title{
+    font-size:26px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.bank-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.bank-grid p{
+    font-size:18px;
+    line-height:1.8;
+}
+
+.footer-note{
+    margin-top:30px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    font-style:italic;
+}
+
+@media(max-width:768px){
+
+.top-header{
+    flex-direction:column;
+}
+
+.invoice-info{
+    text-align:left;
+    margin-top:20px;
+}
+
+.invoice-title{
+    font-size:38px;
+}
+
+.bank-grid{
+    grid-template-columns:1fr;
+}
+
+table th,
+table td{
+    font-size:14px;
+    padding:10px;
+}
+
+.grand-total{
+    font-size:28px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="invoice-container">
+
+<div class="top-header">
+<div class="invoice-title">INVOICE</div>
+
+<div class="invoice-info">
+<div><strong>INVOICE NO:</strong> INV-0426</div>
+<div><strong>DATE:</strong> July 31, 2026</div>
+</div>
+</div>
+
+<div class="section billed">
+<strong>BILLED TO:</strong><br><br>
+
+Darlene L pearson<br>
+300 Moffat Dr Apt 3h<br>
+Cheraw South Carolina 29520
+</div>
+
+<div class="section">
+
+<table>
+<tr>
+<th>Quantity</th>
+<th>Description</th>
+<th>Unit Price</th>
+<th>Total Price</th>
+</tr>
+
+<tr>
+<td>8</td>
+<td>Volvo EC750D Excavator</td>
+<td>$187,500.00</td>
+<td>$1,500,000.00</td>
+</tr>
+</table>
+
+<div class="spec-title">
+Technical Specifications (Volvo EC750D Excavator)
+</div>
+
+<table>
+<tr>
+<td>Operating weight</td>
+<td>72,700 - 74,700 kg</td>
+</tr>
+
+<tr>
+<td>Bucket capacity</td>
+<td>3.3 - 6.1 m³</td>
+</tr>
+
+<tr>
+<td>Lifting capacity, along undercarriage</td>
+<td>26,110 kg</td>
+</tr>
+
+<tr>
+<td>...at reach / height</td>
+<td>6 / 1.5 m</td>
+</tr>
+
+<tr>
+<td>Max. digging reach</td>
+<td>11,460 mm</td>
+</tr>
+
+<tr>
+<td>Max. digging depth</td>
+<td>7,210 mm</td>
+</tr>
+
+<tr>
+<td>Breakout force, SAE J1179 (Normal)</td>
+<td>325 kN</td>
+</tr>
+
+<tr>
+<td>Tear out force, SAE J1179 (Normal)</td>
+<td>314 kN</td>
+</tr>
+
+<tr>
+<td>Overall width</td>
+<td>4,290 mm</td>
+</tr>
+
+<tr>
+<td>Tail swing radius</td>
+<td>4,140 mm</td>
+</tr>
+
+<tr>
+<td>Based on machine configuration</td>
+<td>6.6m boom, 2.9m arm, 12700kg CWT</td>
+</tr>
+
+</table>
+
+<div class="total-box">
+<div>Discounts: $0.00</div>
+<div>Taxes: $0.00</div>
+
+<div class="grand-total">
+Grand Total: $1,500,000.00
+</div>
+</div>
+
+<div class="payment-box">
+
+<div class="payment-title">
+PAYMENT INSTRUCTIONS
+</div>
+
+<p>
+Payment to be made via ACH or wire transfer to the account listed below.
+</p>
+
+<div class="bank-grid">
+
+<div>
+<p>
+<strong>ACCOUNT HOLDER:</strong><br>
+GFSSGA IMPACT NETWORK
+</p>
+
+<p>
+<strong>ACCOUNT NUMBER:</strong><br>
+214673810876
+</p>
+
+<p>
+<strong>BANK NAME:</strong><br>
+Lead Bank
+</p>
+
+<p>
+<strong>COUNTRY CODE:</strong><br>
+US
+</p>
+</div>
+
+<div>
+<p>
+<strong>ACH ROUTING:</strong><br>
+101019644
+</p>
+
+<p>
+<strong>WIRE ROUTING:</strong><br>
+101019644
+</p>
+
+<p>
+<strong>BANK ADDRESS:</strong><br>
+1801 Main St., Kansas City, MO 64108
+</p>
+
+<p>
+<strong>ACCOUNT TYPE:</strong><br>
+Checking
+</p>
+</div>
+
+</div>
+
+<p style="margin-top:25px; font-size:18px;">
+Please include the invoice number (INV-0426) as reference with your payment.
+</p>
+
+</div>
+
+<div class="footer-note">
+Thank you for your business!
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
