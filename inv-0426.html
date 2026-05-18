@@ -368,7 +368,7 @@ Thank you for your business!
 </div>
 <div style="margin-top:40px; text-align:center;">
 
-<button style="
+<button onclick="paymentCompleted()" style="
 padding:15px 30px;
 font-size:18px;
 background:#28a745;
@@ -381,7 +381,7 @@ margin-right:15px;
 PAYMENT COMPLETED
 </button>
 
-<button style="
+<button onclick="uploadProof()" style="
 padding:15px 30px;
 font-size:18px;
 background:#0066cc;
@@ -389,12 +389,38 @@ color:#fff;
 border:none;
 border-radius:6px;
 cursor:pointer;
-border-radius:6px;
 ">
 UPLOAD PAYMENT PROOF
 </button>
 
 </div>
+</body>
+<script>
+
+function paymentCompleted() {
+    alert("Thank you. Your payment confirmation has been received.");
+}
+
+function uploadProof() {
+
+    const uploadLink = document.createElement("input");
+
+    uploadLink.type = "file";
+
+    uploadLink.accept = ".jpg,.jpeg,.png,.pdf";
+
+    uploadLink.onchange = function () {
+
+        if(uploadLink.files.length > 0) {
+            alert("Payment proof selected successfully.");
+        }
+
+    };
+
+    uploadLink.click();
+}
+
+</script>
 </div>
 
 </body>
