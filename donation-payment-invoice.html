@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PNC Pinacle Corporate Banking - Donation Payment Invoice</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+padding:40px;
+color:#222;
+}
+
+.invoice-container{
+
+max-width:900px;
+margin:auto;
+background:#fff;
+border-radius:10px;
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+overflow:hidden;
+
+}
+
+.header{
+
+background:#0d47a1;
+color:#fff;
+padding:30px;
+text-align:center;
+
+}
+
+.header img{
+
+width:90px;
+margin-bottom:10px;
+
+}
+
+.header h1{
+
+font-size:34px;
+letter-spacing:1px;
+
+}
+
+.header h2{
+
+margin-top:10px;
+font-weight:normal;
+font-size:20px;
+
+}
+
+.invoice-info{
+
+display:flex;
+justify-content:space-between;
+padding:30px;
+background:#eef4ff;
+border-bottom:1px solid #ddd;
+
+}
+
+.invoice-info div{
+
+line-height:1.9;
+
+}
+
+.section{
+
+padding:30px;
+
+}
+
+.section h3{
+
+color:#0d47a1;
+margin-bottom:15px;
+border-left:5px solid #0d47a1;
+padding-left:10px;
+
+}
+
+.bill-box{
+
+border:1px solid #ddd;
+padding:20px;
+border-radius:8px;
+line-height:2;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+table th{
+
+background:#0d47a1;
+color:white;
+padding:15px;
+
+}
+
+table td{
+
+padding:15px;
+border:1px solid #ddd;
+
+}
+
+.total{
+
+text-align:right;
+font-size:28px;
+font-weight:bold;
+margin-top:25px;
+color:#0d47a1;
+
+}
+
+.payment-box{
+
+margin-top:30px;
+border:1px solid #0d47a1;
+padding:25px;
+border-radius:8px;
+background:#f8fbff;
+
+}
+
+.payment-box p{
+
+margin-bottom:12px;
+
+}
+
+.notice{
+
+margin-top:25px;
+padding:18px;
+background:#fff7d6;
+border-left:6px solid #f4b400;
+font-size:15px;
+line-height:1.8;
+
+}
+
+.buttons{
+
+text-align:center;
+margin:40px 0;
+
+}
+
+.btn{
+
+display:inline-block;
+padding:16px 35px;
+margin:10px;
+border-radius:8px;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+transition:.3s;
+
+}
+
+.pay{
+
+background:#0d47a1;
+color:white;
+
+}
+
+.upload{
+
+background:#2e7d32;
+color:white;
+
+}
+
+.footer{
+
+background:#0d47a1;
+color:white;
+text-align:center;
+padding:25px;
+font-size:15px;
+
+}
+
+@media(max-width:768px){
+
+.invoice-info{
+
+flex-direction:column;
+
+}
+
+body{
+
+padding:10px;
+
+}
+
+.header h1{
+
+font-size:26px;
+
+}
+
+.total{
+
+font-size:22px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="invoice-container">
+
+<div class="header">
+
+<img src="logo.png" alt="GFSSGA Logo">
+
+<h1>PNC PINACLE CORPORATE</h1>
+
+<h2>DONATION PAYMENT INVOICE</h2>
+
+</div>
+<div class="invoice-info">
+
+<div>
+
+<strong>Invoice Number</strong><br>
+
+INV-0526-001
+
+</div>
+
+<div>
+
+<strong>Invoice Date</strong><br>
+
+15 May 2026
+
+</div>
+
+<div>
+
+<strong>Currency</strong><br>
+
+USD
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>BILL TO</h3>
+
+<div class="bill-box">
+
+<strong>Payer Name:</strong>
+
+<br><br>
+
+_____________________________________________________
+
+<br><br>
+
+<strong>Payer Address:</strong>
+
+<br><br>
+
+_____________________________________________________
+
+<br><br>
+
+_____________________________________________________
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>DONATION DETAILS</h3>
+
+<table>
+
+<tr>
+
+<th>Description</th>
+
+<th>Amount (USD)</th>
+
+</tr>
+
+<tr>
+
+<td>Charitable Donation Contribution</td>
+
+<td style="text-align:right;"><strong>$950,000.00</strong></td>
+
+</tr>
+
+</table>
+
+<div class="total">
+
+TOTAL AMOUNT DUE
+
+<br><br>
+
+USD $950,000.00
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>PAYMENT INSTRUCTIONS</h3>
+
+<div class="payment-box">
+
+<p><strong>Please remit payment to the designated collection account authorized by PNC PINACLE CORPORATE BANKING for payment processing.</strong></p>
+
+<br>
+
+<p><strong>Account Holder:</strong> GFSSGA IMPACT NETWORK</p>
+
+<p><strong>Bank Name:</strong> Lead Bank</p>
+
+<p><strong>Account Number:</strong> 214673810876</p>
+
+<p><strong>Country Code:</strong> US</p>
+
+<p><strong>ACH Routing:</strong> 101019644</p>
+
+<p><strong>Wire Routing:</strong> 101019644</p>
+
+<p><strong>Bank Address:</strong> 1801 Main St., Kansas City, MO 64108</p>
+
+<p><strong>Account Type:</strong> Checking</p>
+
+</div>
+
+<div class="notice">
+
+<strong>REMITTANCE NOTICE</strong>
+
+<br><br>
+
+Payment for this invoice should be remitted to the above designated collection account authorized by <strong>PNC PINACLE CORPORATE BANKING</strong> for payment processing.
+
+Please include the invoice number as your payment reference where applicable.
+
+</div>
+
+</div>
+<div class="buttons">
+
+<a href="index.html" class="btn pay">
+PAY NOW
+</a>
+
+<a href="#" class="btn upload" onclick="uploadProof()">
+UPLOAD PAYMENT PROOF
+</a>
+
+</div>
+
+<div class="footer">
+
+<strong>PNC PINACLE CORPORATE</strong><br><br>
+
+Invoice generated securely through the PNC PINACLE CORPORATE Payment Portal.<br>
+
+© 2026 All Rights Reserved.
+
+</div>
+
+</div>
+
+<script>
+
+function uploadProof(){
+
+const input=document.createElement("input");
+
+input.type="file";
+
+input.accept=".jpg,.jpeg,.png,.pdf";
+
+input.onchange=function(){
+
+if(input.files.length>0){
+
+alert(
+"Payment proof selected successfully:\n\n"+
+input.files[0].name+
+"\n\nPlease submit it according to your organization's verification process."
+);
+
+}
+
+};
+
+input.click();
+
+}
+
+</script>
+
+</body>
+
+</html>
